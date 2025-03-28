@@ -1,0 +1,59 @@
+@if (torneo){
+<div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="16">
+        <nz-card [nzTitle]="torneo.nome" [nzExtra]="extraTemplate" [nzActions]="[sorteggiaGironiTemplate]">
+            <nz-row [nzGutter]="[16,16]">
+                <nz-col [nzSpan]="8" *ngFor="let item of numeroGironiList; let i = index">
+                    <nz-card [nzTitle]="item.nome" [nzExtra]="templateGironi" class="girone">
+                        <ng-template #templateGironi>
+                            <nz-icon nzType="plus" [nz-tooltip]="'Aggiungi Partecipante'"
+                                style="cursor: pointer;font-size: 16px;margin-right: 8px;"
+                                (click)="aggiungiSquadraAlGirone(i + 1)">
+                            </nz-icon>
+                            <nz-icon nzType="minus-circle" style="cursor: pointer; font-size: 16px; margin-right: 8px;"
+                                [nz-tooltip]="'Elimina Partecipante'"
+                                (click)="rimuoviSquadraDalGirone(i + 1)"></nz-icon>
+                            <nz-icon nzType="delete" [nz-tooltip]="'Elimina Girone'"
+                                style="cursor: pointer; font-size: 16px;" (click)="eliminaGirone(i)">
+                            </nz-icon>
+                        </ng-template>
+                        <div *ngFor="let squadra of item.squadre; let j = index" class="partecipante">
+                            <span>
+                                {{ squadra.nome }}
+                            </span>
+                            <!-- <input style="background-color: black;width: 100%;" *ngIf="editingIndex === j" [(ngModel)]="squadra.nome" (blur)="stopEditing()" (keydown.enter)="stopEditing()" autofocus /> -->
+                        </div>
+                    </nz-card>
+                </nz-col>
+            </nz-row>
+        </nz-card>
+        <ng-template #extraTemplate>
+            <button nz-button nzType="default" nzType="text" (click)="salvaModifiche()">Salva Modifiche</button>
+            <button nz-button nzType="primary" nzType="text" (click)="aggiungiGirone()">Aggiungi Girone</button>
+        </ng-template>
+        <ng-template #sorteggiaGironiTemplate>
+            <button nz-button nzType="primary" nzType="text" (click)="sorteggiaGironi()" style="float: right;margin-right: 24px;" [disabled]="!numeroUgualePartecipanti">Sorteggia Gironi</button>
+        </ng-template>
+    </div>
+    <div nz-col [nzSpan]="8">
+        <nz-card [nzTitle]="'Squadre Partecipanti'" [nzExtra]="partecipantiTemplate">
+            <nz-list>
+                @for (item of squadreTotali; track $index) {
+                    <nz-list-item>
+                        <span> Partecipante {{ $index + 1}} </span>
+                    </nz-list-item>
+                }
+            </nz-list>
+            <ng-template #partecipantiTemplate>
+                    <nz-icon nzType="plus" [nz-tooltip]="'Aggiungi Partecipante'"
+                        style="cursor: pointer;font-size: 16px;margin-right: 8px;"
+                        (click)="aggiungiPartecipante()">
+                    </nz-icon>
+                    <nz-icon nzType="minus-circle" style="cursor: pointer; font-size: 16px; margin-right: 8px;"
+                        [nz-tooltip]="'Elimina Partecipante'"
+                        (click)="rimuoviPartecipante()"></nz-icon>
+            </ng-template>
+        </nz-card>
+    </div>
+</div>
+}

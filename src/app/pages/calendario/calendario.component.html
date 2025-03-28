@@ -1,0 +1,105 @@
+<nz-spin
+  class="spin"
+  nzSimple
+  [nzIndicator]="indicatorTemplate"
+  [nzSize]="'large'"
+  nzTip="Caricamento calendario in corso..."
+  *ngIf="loading"
+></nz-spin>
+<div *ngIf="!loading" class="container">
+  <nz-card [nzTitle]="titolo" [nzExtra]="extraTemplate" >
+  <div class="padre">
+    <div nz-row [nzGutter]="8" style="width: 100%" *ngIf="switchValue">
+      <div nz-col [nzSpan]="8" *ngFor="let squadra of squadre">
+        <nz-card [nzTitle]="squadra.nome" class="card">
+          <nz-list>
+            <nz-list-item *ngFor="let avversario of squadra.avversari">
+              <span>vs. {{ avversario.nome }} ({{ avversario.fascia }})</span>
+              <a
+                (click)="
+                  inserisciRisultato(
+                    squadra.nome,
+                    avversario.nome,
+                    avversario.isCasa
+                  )
+                "
+                *ngIf="!avversario.haGiocato"
+                >Inserisci risultato</a
+              >
+              <a
+                *ngIf="avversario.haGiocato"
+                (click)="
+                  inserisciRisultato(
+                    squadra.nome,
+                    avversario.nome,
+                    avversario.isCasa,
+                    true
+                  )
+                "
+                >{{ avversario.risultato }}</a
+              >
+            </nz-list-item>
+          </nz-list>
+        </nz-card>
+        <br />
+      </div>
+    </div>
+    <div nz-row [nzGutter]="8" style="width: 100%" *ngIf="!switchValue">
+      <div
+        nz-col
+        [nzSpan]="8"
+        *ngFor="let giornata of giornateArray; let i = index"
+      >
+        <nz-card [nzTitle]="'Giornata ' + (i + 1)" class="card">
+          <nz-list>
+            <nz-list-item *ngFor="let partita of giornata.partite">
+              <span
+                >{{ partita.squadraCasa }} - {{ partita.squadraOspite }}</span
+              >
+              <a
+                (click)="
+                  inserisciRisultato(
+                    partita.squadraCasa,
+                    partita.squadraOspite,
+                    false
+                  )
+                "
+                *ngIf="!partita.vincitore"
+                >Inserisci risultato</a
+              >
+              <a
+                *ngIf="partita.vincitore"
+                (click)="
+                  inserisciRisultato(
+                    partita.squadraCasa,
+                    partita.squadraOspite,
+                    false,
+                    true
+                  )
+                "
+                >{{ partita.golCasa }} - {{ partita.golOspite }}</a
+              >
+            </nz-list-item>
+          </nz-list>
+        </nz-card>
+        <br />
+      </div>
+    </div>
+    <button
+      nz-button
+      nzType="primary"
+      (click)="terminaGironi()"
+      style="float: right; margin-right: 8px"
+      [disabled]="!attivoBottone"
+    >
+      Termina Gironi
+    </button>
+  </div>
+  </nz-card>
+</div>
+<ng-template #indicatorTemplate
+  ><span nz-icon nzType="loading" style="font-size: 40px"></span
+></ng-template>
+<ng-template #extraTemplate>
+  <nz-switch [(ngModel)]="switchValue" (ngModelChange)="toggleSwitch()"></nz-switch>
+</ng-template>

@@ -1,0 +1,13 @@
+:host ::ng-deep .girone .ant-card-body{
+    padding: 0px !important;
+}
+
+.partecipante{
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #303030;
+    padding: 16px;
+}
+/* :host ::ng-deep .gironi{
+    width: 66%;
+} */

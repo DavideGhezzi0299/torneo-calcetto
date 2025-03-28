@@ -1,0 +1,65 @@
+.brackets-viewer {
+}
+/* Make sure the content takes the whole page */
+.brackets-viewer div {
+  width: 100%;
+}
+
+/* Break pages between brackets */
+.bracket {
+  page-break-after: always;
+  break-after: always;
+}
+
+/* Prevent round headers to wrap */
+h3 {
+  white-space: nowrap;
+}
+
+/* Let matches grow in width */
+.round {
+  flex-grow: 1;
+  min-width: 150px;
+  /* max-width: var(--match-width); */
+}
+
+/* Get rid of the fixed match width */
+.match {
+  width: unset !important;
+}
+
+/* Force backgrounds */
+* {
+  -webkit-print-color-adjust: exact !important;
+}
+
+/* Front page */
+@page :right {
+  size: legal landscape;
+  margin: 0;
+}
+
+/* Back page */
+@page :left {
+  size: legal landscape;
+  margin: 0.6cm 0 0 0;
+}
+
+.brackets-viewer{
+  --match-width: 300px;
+  --match-vertical-padding: 20px;
+  --text-size: 20px;
+  --round-margin: 75px;
+}
+
+:host ::ng-deep .container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+:host ::ng-deep .spin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

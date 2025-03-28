@@ -1,0 +1,26 @@
+<form nz-form [formGroup]="tournamentForm" class="tournament-form" [nzLayout]="'vertical'">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="nome">Nome Torneo*</nz-form-label>
+      <nz-form-control [nzSpan]="18">
+        <input nz-input formControlName="nome" id="nome" placeholder="Inserisci il nome del torneo" />
+      </nz-form-control>
+    </nz-form-item>
+  
+    <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="descrizione">Descrizione</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+            <input nz-input formControlName="descrizione" id="descrizione" placeholder="Inserisci una descrizione per il torneo" />
+        </nz-form-control>
+      </nz-form-item>
+    
+    <nz-form-item>
+      <nz-form-label [nzSpan]="8" nzFor="numeroPartecipanti">Numero Partecipanti*</nz-form-label>
+      <nz-form-control [nzSpan]="16">
+        <nz-input-number [nzMin]="2" [nzMax]="100" formControlName="numeroPartecipanti" id="numeroPartecipanti"></nz-input-number>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="close()" >Esci</button>
+    <button nz-button nzType="primary" (click)="onSubmit()" [disabled]="!tournamentForm.valid">Crea Torneo</button>
+  </div>

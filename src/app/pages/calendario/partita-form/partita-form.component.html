@@ -1,0 +1,18 @@
+<form nz-form [formGroup]="partitaForm" class="m-t-lg" nzLayout="vertical">
+  <nz-form-item>
+    <nz-form-label nzFor="squadra1">{{ data.squadra }}</nz-form-label>
+    <nz-form-control>
+      <nz-input-number formControlName="golCasa" id="squadra1" [nzMin]="0"/>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="squadra2">{{ data.avversario }}</nz-form-label>
+    <nz-form-control>
+      <nz-input-number formControlName="golOspite" id="squadra2" [nzMin]="0"/>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="onClose()">Annulla</button>
+  <button nz-button nzType="primary" (click)="onSubmit()" [disabled]="isPareggio">Salva</button>
+</div>

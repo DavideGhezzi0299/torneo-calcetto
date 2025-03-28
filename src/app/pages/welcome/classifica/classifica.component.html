@@ -1,0 +1,54 @@
+<nz-card nzTitle="Classifica" [nzExtra]="extraTemplate" *ngIf="!loading">
+  <div class="padre">
+    <nz-table [nzData]="squadre" [nzShowPagination]="false">
+      <thead>
+        <tr>
+          <th>Squadra</th>
+          <th>Fascia</th>
+          <th>Punti</th>
+          <th>Partite Giocate</th>
+          <th>Vittorie</th>
+          <th>Sconfitte</th>
+          <th>Goal Fatti</th>
+          <th>Goal Subiti</th>
+          <th>Differenza Reti</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let squadra of squadre; let i = index">
+          <td
+            [ngClass]="{ 'bordo-verde': i < 2, 'bordo-giallo': i > 1 && i < 6 }"
+          >
+            {{ squadra.nome }}
+          </td>
+          <td> {{squadra.fascia}} </td>
+          <td>{{ squadra.puntiFatti }}</td>
+          <td>{{ squadra.partiteGiocate }}</td>
+          <td>{{ squadra.vittorie }}</td>
+          <td>{{ squadra.sconfitte }}</td>
+          <td>{{ squadra.golFatti }}</td>
+          <td>{{ squadra.golSubiti }}</td>
+          <td>{{ squadra.differenzaReti }}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</nz-card>
+<ng-template #extraTemplate>
+  <div class="legenda">
+    <nz-tag [nzColor]="'green'"
+      >1ª e 2ª posizione (Vanno alle semifinali)</nz-tag
+    >
+    <nz-tag [nzColor]="'yellow'"
+      >3ª - 6ª posizione (Spareggi per accedere alle semifinali)</nz-tag
+    >
+    <button
+      nz-button
+      nzType="default"
+      (click)="sorteggiaPartite()"
+      [disabled]="ciSonoPartite"
+    >
+      Sorteggia Partite
+    </button>
+  </div>
+</ng-template>

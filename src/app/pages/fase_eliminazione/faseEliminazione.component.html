@@ -1,0 +1,5 @@
+<nz-spin class="spin" nzSimple [nzIndicator]="indicatorTemplate" [nzSize]="'large'" nzTip="Caricamento fase eliminazione in corso..." *ngIf="loading"></nz-spin>
+<div class="container">
+    <div class="brackets-viewer"  [hidden]="loading"></div>
+</div>
+<ng-template #indicatorTemplate><span nz-icon nzType="loading" style="font-size: 40px;"></span></ng-template>

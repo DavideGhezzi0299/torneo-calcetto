@@ -1,0 +1,19 @@
+<div class="dashboard-component">
+  <div class="card-container">
+    <nz-card *ngFor="let card of cards" [nzHoverable]="true" [nzTitle]="card.title" (click)="onCardClick(card)"
+      class="item-card">
+      <div style="display: flex;">
+        <nz-icon [nzType]="card.icon" nzTheme="outline" class="icon"></nz-icon>
+      </div>
+    </nz-card>
+  </div>
+  <nz-card class="ultimi-tornei" nzTitle="Ultimi Tornei">
+    <div *ngFor="let torneo of tornei" class="card-torneo" (click)="apriFormTorneo(torneo.idPk)" > 
+      <div class="torneo">
+        <nz-avatar nzText="T"></nz-avatar>
+        <div style="font-size: 20px; align-content: center;">{{ torneo.nome }}</div>
+        <div style="font-size: 16px !important; align-content: center;">{{ torneo.numeroPartecipanti}} <nz-icon nzType="user"></nz-icon></div>
+      </div>
+    </div>
+  </nz-card>
+</div>

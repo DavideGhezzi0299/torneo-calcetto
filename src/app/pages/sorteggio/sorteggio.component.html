@@ -1,0 +1,15 @@
+<nz-card nzTitle="Sorteggio Partite">
+  <nz-row [nzGutter]="8">
+    <nz-col *ngFor="let item of squadre" nzSpan="8">
+        <mat-card>
+            <mat-card-header>
+              <mat-card-title>{{ item.nome }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+              <button mat-button [disabled]="bottoneDisattivato" (click)="sorteggiaAvversari(item)">Sorteggia Avversari</button>
+            </mat-card-actions>
+        </mat-card>
+        <br>
+    </nz-col>
+  </nz-row>
+</nz-card>

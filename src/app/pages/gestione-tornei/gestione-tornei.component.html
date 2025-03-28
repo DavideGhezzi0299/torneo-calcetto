@@ -1,0 +1,27 @@
+<nz-table #basicTable [nzData]="tornei">
+    <thead>
+        <tr>
+          <th>Azione</th>
+          <th>Nome</th>
+          <th>Descrizione</th>
+          <th>Data Creazione</th>
+          <th>Numero Partecipanti</th>
+          <th>Utente creatore</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (data of basicTable.data; track data) {
+            <tr>
+                <td>
+                    <nz-icon nzType="edit" nzTheme="outline" nz-tooltip="Modifica torneo" (click)="modificaTorneo(data.idPk)"/>
+                    <nz-icon nzType="delete" nzTheme="outline" nz-tooltip="Elimina torneo" (click)="eliminaTorneo(data.idPk)"/>
+                </td>
+                <td>{{ data.nome }}</td>
+                <td>{{ data.descrizione }}</td>
+                <td>{{ data.dataCreazione }}</td>
+                <td>{{ data.numeroPartecipanti }}</td>
+                <td>{{ data.fkIdUtenteNavigation }}</td>
+            </tr>
+        }
+    </tbody>
+</nz-table>

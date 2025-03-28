@@ -1,0 +1,102 @@
+.card-container {
+  display: flex;
+  margin-right: 20px;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+/* Stile base della card */
+.item-card {
+  width: 250px;
+  position: relative;
+  overflow: hidden; /* Impedisce che il contenuto trabocchi durante l'animazione */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  height: 30%;
+}
+
+/* Effetto hover per ingrandire la card e aggiungere un'ombra */
+.item-card:hover {
+  transform: scale(1.1); /* Aumenta le dimensioni della card */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombra quando si passa sopra */
+  z-index: 10; /* Porta la card ingrandita in primo piano */
+}
+
+/* Icona centrata inizialmente nella card */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.icon {
+  font-size: 50px;
+  color: #1890ff;
+  margin-bottom: 16px;
+}
+
+.ultimi-tornei {
+  width: 80%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+:host ::ng-deep .ant-card-head {
+  width: 80%;
+}
+
+:host ::ng-deep .ant-card-head-title {
+  text-align: center;
+  white-space: normal;
+}
+
+:host ::ng-deep .ultimi-tornei .ant-card-head-title {
+  font-size: 45px;
+}
+
+:host ::ng-deep .ultimi-tornei .ant-card-body {
+  width: 100%;
+  max-height: 75vh;
+  overflow-y: auto;
+  overflow-x: visible;
+  padding: 0px !important;
+  border-bottom: 1px solid #303030;
+  margin-bottom: 16px;
+}
+
+:host ::ng-deep .ultimi-tornei .ant-card-body::-webkit-scrollbar {
+  display: none; /* Per Chrome, Safari, Edge */
+}
+.dashboard-component {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.torneo {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #303030;
+  padding: 48px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.torneo:hover{
+  transform: scale(1.05); 
+}
+.card-torneo{
+  background-color: #141414;
+}
+.card-torneo:hover{
+  filter: brightness(150%); /* Aumenta la luminosità al passaggio del mouse */
+  cursor: pointer; /* Mostra la manina */
+}
